@@ -2,8 +2,10 @@ node_modules/
 dest/
 downloaded/
 lua/
+.vscode/
 
 doc
 
 desktop.ini
 *.gma
+package-lock.json

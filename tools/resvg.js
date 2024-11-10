@@ -1,6 +1,12 @@
 const { Transform } = require('stream');
 const path = require('path');
-const { render } = require('resvg-node');
+const { Resvg } = require('@resvg/resvg-js');
+
+function render(svgData, option)
+{
+	const resvg = new Resvg(svgData, option);
+	return resvg.render().asPng();
+}
 
 const { streamToBuffer } = require('./util');
 

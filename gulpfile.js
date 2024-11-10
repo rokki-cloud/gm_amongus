@@ -56,7 +56,7 @@ function lua() {
 	return gulp.src('src/**/*.lua', { since: lastRunIgnoreErrors(lua) })
 		.pipe(optimizeLua())
 		.pipe(minifyLua())
-		.pipe(gulp.dest('dest', { mode: 0777 }));
+		.pipe(gulp.dest('dest', { mode: 0o777 }));
 }
 lua.description = "Copies and minifies lua files.";
 
@@ -70,7 +70,7 @@ function moon() {
 		.pipe(optimizeLua())
 		.pipe(discourageLuaMod())
 		// .pipe(minifyLua())
-		.pipe(gulp.dest('dest', { mode: 0777 }));
+		.pipe(gulp.dest('dest', { mode: 0o777 }));
 }
 moon.description = "Compiles moonscript files.";
 
@@ -102,7 +102,7 @@ function svg() {
 	return gulp.src('src/**/*.svg', { since: lastRunIgnoreErrors(svg) })
 		//.pipe(svgmin())
 		.pipe(renderSvg())
-		.pipe(gulp.dest('dest', { mode: 0777 }));
+		.pipe(gulp.dest('dest', { mode: 0o777 }));
 }
 svg.description = "Renders SVG assets.";
 
@@ -111,7 +111,7 @@ svg.description = "Renders SVG assets.";
  */
 function materials() {
 	return gulp.src(MATERIAL_GLOBS, { since: lastRunIgnoreErrors(materials) })
-		.pipe(gulp.dest('dest/materials/', { mode: 0777 }));
+		.pipe(gulp.dest('dest/materials/', { mode: 0o777 }));
 }
 materials.description = "Copies materials.";
 
@@ -120,7 +120,7 @@ materials.description = "Copies materials.";
  */
 function sound() {
 	return gulp.src(SOUND_GLOBS, { since: lastRunIgnoreErrors(materials) })
-		.pipe(gulp.dest('dest/sound/', { mode: 0777 }));
+		.pipe(gulp.dest('dest/sound/', { mode: 0o777 }));
 }
 materials.description = "Copies sound files.";
 
@@ -129,7 +129,7 @@ materials.description = "Copies sound files.";
  */
 function model() {
 	return gulp.src(MODEL_GLOBS, { since: lastRunIgnoreErrors(materials) })
-		.pipe(gulp.dest('dest/models/', { mode: 0777 }));
+		.pipe(gulp.dest('dest/models/', { mode: 0o777 }));
 }
 materials.description = "Copies model files.";
 
@@ -138,7 +138,7 @@ materials.description = "Copies model files.";
  */
 function miscGamemodeAssets() {
 	return gulp.src(MISC_GAMEMODE_ASSET_GLOBS, { since: lastRunIgnoreErrors(materials) })
-		.pipe(gulp.dest('dest/gamemodes/amongus', { mode: 0777 }));
+		.pipe(gulp.dest('dest/gamemodes/amongus', { mode: 0o777 }));
 }
 materials.description = "Copies misc gamemode asset files.";
 
@@ -147,7 +147,7 @@ materials.description = "Copies misc gamemode asset files.";
  */
 function metadata() {
 	return gulp.src(METADATA_GLOBS, { since: lastRunIgnoreErrors(materials) })
-		.pipe(gulp.dest('dest', { mode: 0777 }));
+		.pipe(gulp.dest('dest', { mode: 0o777 }));
 }
 materials.description = "Copies metadata files.";
 

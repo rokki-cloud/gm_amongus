@@ -236,6 +236,7 @@ hook.Add "CreateMove", "NMW AU KillScreenMove", (cmd) ->
 
 hook.Add "OnPlayerChat", "NMW AU DeadSay", (ply, text) ->
 	return unless ply\IsValid!
+	return if GAMEMODE\IsMeetingInProgress! -- Another handler handles this during the meeting
 
 	prefixColor, prefixText = if ply.IsDead and ply\IsDead!
 		Color(255, 0, 0), "(GHOST CHAT) "
