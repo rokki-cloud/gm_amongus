@@ -1,7 +1,7 @@
 taskTable = {
 	Name: "startReactor"
 	Type: GM.TaskType.Long
-	Time: 20
+	Time: 1
 }
 
 if CLIENT

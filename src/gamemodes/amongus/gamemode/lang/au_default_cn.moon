@@ -166,6 +166,9 @@ CN = with GM.Lang\Get "zh-CN"
 	["prepare.invalidMap.subText"] = "未找到地图清单文件。"
 
 	["prepare.warmup"] = "热身时间！"
+	["prepare.autoPilotEnabled"] = "即将到来的回合现在将由服务器管理！"
+	["prepare.autoPilotDisabled"] = "即将到来的回合现在将手动管理！"
+	["prepare.notEnoughPlayers"] = "没有足够的球员开始回合！"
 	["prepare.waitingForPlayers"] = "等待玩家中。。。"
 	["prepare.waitingForAdmin"] = "等待管理员开始游戏。"
 	["prepare.commencing"] = "本局游戏将在%d秒后开始。"
@@ -174,6 +177,8 @@ CN = with GM.Lang\Get "zh-CN"
 	["connected.spectating"] = "%s已通过旁观者的身份加入。"
 	["connected.spawned"] = "%s准备就绪。"
 	["connected.disconnected"] = "%s离开了房间。"
+	["connected.adminSpawned"] = "管理员(%s)准备玩!"
+	["connected.adminDisconnected"] = "管理员(%s)已经离开游戏!"
 
 	["chat.noTalkingDuringGame"] = "你不能在游戏中说话！"
 

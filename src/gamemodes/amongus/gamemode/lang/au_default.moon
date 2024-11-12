@@ -178,6 +178,9 @@ with GM.Lang\Get "en"
 	["prepare.invalidMap.subText"] = "No map manifest file found."
 
 	["prepare.warmup"] = "Warm-Up Time!"
+	["prepare.autoPilotEnabled"] = "Upcoming rounds will now be managed by the server!"
+	["prepare.autoPilotDisabled"] = "Upcoming rounds will now be managed manually!"
+	["prepare.notEnoughPlayers"] = "There are not enough players to start the round!"
 	["prepare.waitingForPlayers"] = "Waiting for players..."
 	["prepare.waitingForAdmin"] = "Waiting for an Admin to start the game."
 	["prepare.commencing"] = "The game will start in %d s."
@@ -190,6 +193,8 @@ with GM.Lang\Get "en"
 	["connected.spectating"] = "%s has joined as a spectator."
 	["connected.spawned"] = "%s is ready to play."
 	["connected.disconnected"] = "%s has left the game!"
+	["connected.adminSpawned"] = "Admin %s is ready to play!"
+	["connected.adminDisconnected"] = "Admin %s has left the game!"
 
 	["chat.noTalkingDuringGame"] = "You cannot talk during the game!"
 

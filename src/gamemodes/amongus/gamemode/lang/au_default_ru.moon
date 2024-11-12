@@ -153,7 +153,7 @@ with GM.Lang\Get "ru"
 		au_kill_cooldown:    "Перезарядка убийства"
 		au_time_limit:       "Лимит времени"
 		au_killdistance_mod: "Дистанция убийства"
-		sv_alltalk:          "Разговор без ограничений"
+		sv_alltalk:          "Общение без ограничений"
 		au_taskbar_updates:  "Обновления шкалы заданий"
 		au_player_speed_mod: "Скорость передвижения"
 
@@ -184,6 +184,9 @@ with GM.Lang\Get "ru"
 	["prepare.invalidMap.subText"] = "Карта не подходит для режима."
 
 	["prepare.warmup"] = "Время подготовки!"
+	["prepare.autoPilotEnabled"] = "Предстоящими раундами теперь будет управлять сервер!"
+	["prepare.autoPilotDisabled"] = "Предстоящие раунды теперь управляются вручную!"
+	["prepare.notEnoughPlayers"] = "Недостаточно игроков для начала раунда!"
 	["prepare.waitingForPlayers"] = "Ожидание других игроков..."
 	["prepare.waitingForAdmin"] = "Ожидание начала матча Админом."
 	["prepare.commencing"] = "Игра начнётся через %d с."
@@ -191,11 +194,13 @@ with GM.Lang\Get "ru"
 		string.format (if count == 1
 			"%d Предатель"
 		else
-			"%d Предателей"), count
+			"%d Предателя"), count
 
 	["connected.spectating"] = "%s зашёл(ла) в игру наблюдателем."
 	["connected.spawned"] = "%s готов(а) играть."
 	["connected.disconnected"] = "%s покинул(а) игру!"
+	["connected.adminSpawned"] = "Администратор %s зашёл(ла) в игру!"
+	["connected.adminDisconnected"] = "Администратор %s покинул(а) игру!"
 
 	["chat.noTalkingDuringGame"] = "Ты не можешь говорить во время игры!"
 

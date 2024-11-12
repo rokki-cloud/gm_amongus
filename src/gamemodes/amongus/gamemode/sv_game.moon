@@ -97,8 +97,9 @@ GM.Game_Start = =>
 	initializedPlayers = @GetFullyInitializedPlayers!
 
 	-- Bail if we don't have enough players.
-	-- TO-DO: print chat message.
-	return if #initializedPlayers < @ConVars.MinPlayers\GetInt!
+	if #initializedPlayers < @ConVars.MinPlayers\GetInt!
+		GAMEMODE\Net_SendGameChatNotification nil, "prepare.notEnoughPlayers"
+		return
 
 	handle = "tryStartGame"
 	@GameData.Timers[handle] = true
@@ -118,8 +119,9 @@ GM.Game_Start = =>
 		initializedPlayers = @GetFullyInitializedPlayers!
 
 		-- Bail if we don't have enough players. Again.
-		-- TO-DO: print chat message.
-		return if #initializedPlayers < @ConVars.MinPlayers\GetInt!
+		if #initializedPlayers < @ConVars.MinPlayers\GetInt!
+			GAMEMODE\Net_SendGameChatNotification nil, "prepare.notEnoughPlayers"
+			return
 
 		hook.Call "GMAU PreGameStart"
 

@@ -29,6 +29,7 @@ flags = bit.bor FCVAR_ARCHIVE, FCVAR_REPLICATED
 -- @field ConfirmEjects (Bool) Should the ejects be confirmed?
 -- @field AllTalk (Bool) Should players be able to talk without restrictions?
 -- @field TaskbarUpdates (Integer) When should the taskbar be updated?
+-- @field TimeLimit (Integer) Round time limit.
 -- @field MeetingCooldown (Integer) Meeting cooldown.
 -- @field MeetingsPerPlayer (Integer) How many meetings a crewmate can call.
 -- @field VoteTime (Integer) How long the voting lasts.
@@ -39,11 +40,12 @@ flags = bit.bor FCVAR_ARCHIVE, FCVAR_REPLICATED
 -- @field TasksCommon (Integer) Max common tasks crewmates can get.
 -- @field TasksVisual (Bool) Should the visual parts of tasks be enabled?
 -- @field DistributeTasksToBots (Bool) Should bot get any tasks?
--- @field TimeLimit (Integer) Round time limit.
 -- @field Countdown (Integer) How long the pre-round countdown lasts.
 -- @field WarmupTime (Integer) How long should the warmup phase last?
 -- @field ForceAutoWarmup (Bool) Should the automated round management be forced?
+-- @field NotifyAboutAdmins (Bool) Should a notification be displayed in the chat when the administrator is connected?
 GM.ConVars =
+	-- Common variables
 	ImposterCount:   CreateConVar "au_max_imposters"   , 1 , flags, "", 1, 10
 	MinPlayers:      CreateConVar "au_min_players"     , 3 , flags, "", 3, 128
 	KillCooldown:    CreateConVar "au_kill_cooldown"   , 20, flags, "", 1, 60
@@ -52,7 +54,9 @@ GM.ConVars =
 	AllTalk:         GetConVar "sv_alltalk"
 	TaskbarUpdates:  CreateConVar "au_taskbar_updates" , 0 , flags, "", 0, 2
 	PlayerSpeedMod:  CreateConVar "au_player_speed_mod", 1 , flags, "", 0.5, 3
+	TimeLimit:		 CreateConVar "au_time_limit", 		600, flags, "", 0, 1200
 
+	-- Meeting variables
 	MeetingCooldown:   CreateConVar "au_meeting_cooldown"      , 20, flags, "", 1, 60
 	MeetingsPerPlayer: CreateConVar "au_meeting_available"     , 2 , flags, "", 1, 5
 	VoteTime:          CreateConVar "au_meeting_vote_time"     , 30, flags, "", 1, 90
@@ -60,20 +64,25 @@ GM.ConVars =
 	VotePostTime:      CreateConVar "au_meeting_vote_post_time", 5 , flags, "", 1, 20
 	VoteAnonymous:     CreateConVar "au_meeting_anonymous"     , 0 , flags, "", 0, 1
 
+	-- Tasks variables
 	TasksShort:  CreateConVar "au_tasks_short"        , 2, flags, "", 0, 5
 	TasksLong:   CreateConVar "au_tasks_long"         , 1, flags, "", 0, 5
 	TasksCommon: CreateConVar "au_tasks_common"       , 1, flags, "", 0, 5
 	TasksVisual: CreateConVar "au_tasks_enable_visual", 0, flags, "", 0, 1
 
+	-- Debug variables
 	DistributeTasksToBots: CreateConVar "au_debug_bot_tasks" , 0, flags, "", 0, 1
 	MeetingBotVote:        CreateConVar "au_debug_bot_vote"  , 0, flags, "", 0, 1
 
-	TimeLimit: CreateConVar "au_time_limit", 600, flags, "", 0, 1200
-	Countdown: CreateConVar "au_countdown" , 5  , flags, "", 1, 10
-
+	-- Prepare variables	
+	Countdown: 		 CreateConVar "au_countdown" ,		  5 , flags, "", 1, 10
 	WarmupTime:      CreateConVar "au_warmup_time"      , 60, flags, "", 0, 120
 	ForceAutoWarmup: CreateConVar "au_warmup_force_auto", 0 , flags, "", 0, 1
 
+	-- Chat variables
+	NotifyAboutAdmins: 	CreateConVar "au_notify_about_admins", 1, flags, "", 0, 1
+
+	-- Another variables
 	PlayerModel: CreateConVar "au_player_model", "models/amongus/player/player.mdl",
 		flags, ""
 	CorpseModel: CreateConVar "au_corpse_model", "models/amongus/player/corpse.mdl",

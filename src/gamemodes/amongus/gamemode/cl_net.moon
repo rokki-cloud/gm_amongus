@@ -484,18 +484,25 @@ net.Receive "NMW AU Flow", -> switch net.ReadUInt GAMEMODE.FlowSize
 		nickname = net.ReadString!
 		connected = net.ReadBool!
 		spectator = net.ReadBool!
+		admin = net.ReadBool!
 
 		chat.AddText Color(220, 32, 32), "[Among Us] ", Color(255, 255, 255), tostring if connected
 			surface.PlaySound "au/player_spawn.ogg"
 
-			if spectator
+			if admin
+				TRANSLATE("connected.adminSpawned") nickname
+			elseif spectator
 				TRANSLATE("connected.spectating") nickname
 			else
 				TRANSLATE("connected.spawned") nickname
 		else
 			surface.PlaySound "au/player_disconnect.ogg"
 
-			TRANSLATE("connected.disconnected") nickname
+			if admin
+				TRANSLATE("connected.adminDisconnected") nickname
+			else
+				TRANSLATE("connected.disconnected") nickname
 
 	when GAMEMODE.FlowTypes.GameChatNotification
-		chat.AddText Color(220, 32, 32), "[Among Us] ", Color(255, 255, 0), tostring TRANSLATE "chat.noTalkingDuringGame"
+		langKey = net.ReadString!
+		chat.AddText Color(220, 32, 32), "[Among Us] ", Color(255, 255, 0), tostring TRANSLATE langKey

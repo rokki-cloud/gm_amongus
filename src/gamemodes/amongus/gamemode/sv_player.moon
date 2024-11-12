@@ -411,10 +411,11 @@ hook.Add "PlayerInitialSpawn", "NMW AU AutoPilot", (ply) -> with GAMEMODE
 
 	ply\SetNWBool("NMW AU Host", true) if ply\IsListenServerHost!
 
+	-- TODO: Rewrite this, bcz this stuff is broken
 	if oldAutoPilot
 		newAutoPilot = true
 		for ply in *player.GetAll!
-			if CAMI.PlayerHasAccess ply, GAMEMODE.PRIV_START_ROUND or ply\IsListenServerHost!
+			if CAMI.PlayerHasAccess(ply, GAMEMODE.PRIV_START_ROUND) or ply\IsListenServerHost!
 				newAutoPilot = false
 				break
 
@@ -429,13 +430,15 @@ hook.Add "PlayerInitialSpawn", "NMW AU AutoPilot", (ply) -> with GAMEMODE
 	return
 
 hook.Add "PlayerDisconnected", "NMW AU AutoPilot", (ply) -> with GAMEMODE
-	GAMEMODE\Net_BroadcastConnectDisconnect ply\Nick!, false
+	IsAdmin = .ConVarSnapshots.NotifyAboutAdmins\GetBool! and ply\IsAdmin!
+	\Net_BroadcastConnectDisconnect ply\Nick!, false, false, IsAdmin
 
+	-- TODO: Rewrite this, bcz this stuff is broken
 	oldAutoPilot = \IsOnAutoPilot!
 	if oldAutoPilot
 		newAutoPilot = false
 		for ply in *player.GetAll!
-			if (CAMI.PlayerHasAccess ply, GAMEMODE.PRIV_START_ROUND) or ply\IsListenServerHost!
+			if CAMI.PlayerHasAccess(ply, GAMEMODE.PRIV_START_ROUND) or ply\IsListenServerHost!
 				newAutoPilot = true
 				break
 
@@ -520,7 +523,7 @@ hook.Add "PlayerSay", "NMW AU DeadChat", (ply) ->
 
 		-- ... but only if they're a living player
 		if (playerTable and not ply\IsDead!)
-			GAMEMODE\Net_SendGameChatError playerTable
+			GAMEMODE\Net_SendGameChatNotification playerTable, "chat.noTalkingDuringGame"
 			return ""
 
 	return

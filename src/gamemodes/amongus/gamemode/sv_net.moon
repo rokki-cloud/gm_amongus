@@ -347,12 +347,13 @@ GM.Net_BroadcastConVarSnapshots = (snapshots) =>
 
 --- Sends a connect/disconnect update to everyone.
 -- @param snapshots ConVar snapshots.
-GM.Net_BroadcastConnectDisconnect = (nickname, connected, spectator = false) =>
+GM.Net_BroadcastConnectDisconnect = (nickname, connected, spectator = false, admin = false) =>
 	net.Start "NMW AU Flow"
 	net.WriteUInt @FlowTypes.ConnectDisconnect, @FlowSize
 	net.WriteString nickname
 	net.WriteBool connected
 	net.WriteBool spectator
+	net.WriteBool admin
 	net.Broadcast!
 
 --- Tells the player to open a VGUI.
@@ -366,12 +367,14 @@ GM.Net_OpenVGUI = (playerTable, identifier, data) =>
 	net.WriteTable data
 	net.Send playerTable.entity
 
---- Sends a game chat error message to the player.
--- @param messageData
-GM.Net_SendGameChatError = (playerTable) =>
+--- Sends a game chat notification to the player.
+-- @param playerTable AU Player Table or nil.
+-- @param langKey The key of the language string to be displayed on the client.
+GM.Net_SendGameChatNotification = (playerTable, langKey) =>
 	net.Start "NMW AU Flow"
 	net.WriteUInt @FlowTypes.GameChatNotification, @FlowSize
-	net.Send playerTable.entity
+	net.WriteString langKey
+	playerTable and net.Send(playerTable.entity) or net.Broadcast!
 
 net.Receive "NMW AU Flow", (len, ply) ->
 	playerTable = GAMEMODE.GameData.Lookup_PlayerByEntity[ply]

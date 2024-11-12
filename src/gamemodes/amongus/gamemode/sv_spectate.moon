@@ -59,6 +59,7 @@ hook.Add "PlayerSpawn", "NMW AU Spec", (ply) ->
 
 			ply\SetPlayerColor GAMEMODE.Colors[preferred]\ToVector!
 
-		GAMEMODE\Net_BroadcastConnectDisconnect ply\Nick!, true, GAMEMODE\IsGameInProgress!
+		IsAdmin = GAMEMODE.ConVarSnapshots.NotifyAboutAdmins\GetBool! and ply\IsAdmin!
+		GAMEMODE\Net_BroadcastConnectDisconnect ply\Nick!, true, GAMEMODE\IsGameInProgress!, IsAdmin
 
 	return
